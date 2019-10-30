@@ -1,24 +1,22 @@
 
 function selectTimeSlot(ele) {
-
-    document.getElementById("time").innerHTML = ele.innerText
+    console.log(ele.innerText);
+    timeSelected = ele.innerText
+    document.getElementById("time").innerHTML = timeSelected;
 
 }
-// function selectDate(ele) {
 
-//     document.getElementById("date").innerHTML = ele.innerText
-//}
-// 
-// function currentDate() {
-//     var today = new Date();
-//     var dd = String(today.getDate()).padStart(2, '0');
-//     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-//     var yyyy = today.getFullYear();
+let timeSelected="";
+let dateSelected="";
 
-//     today = mm + '/' + dd + '/' + yyyy;
+function selectDateSlot(ele) {
+    console.log(ele.innerText);
+    dateSelected = ele.innerText
+    document.getElementById("date").innerHTML = dateSelected;
+}
 
-//     return today;
-// }
+
+
 
 function renderInfo(response) {
     let tbody = document.getElementById("appointmentData");
@@ -39,7 +37,10 @@ function renderInfo(response) {
         editCell.appendChild(editButton)
         let deleteCell = document.createElement("td");
         let deleteButton = document.createElement("button");
-        deleteButton.innerText = "Delete"
+        deleteButton.innerText = "Delete1"
+        deleteButton.onclick = function () {
+            deleteApp2(appointment.id);
+        }
         deleteCell.appendChild(deleteButton);
         row.appendChild(appointmentNum);
         row.appendChild(name);
@@ -67,9 +68,77 @@ function bookAppointment() {
     let request = new XMLHttpRequest();
     request.open("POST", "http://localhost:9090/appointment");
 
-    request.onSubmit = function () {
-       
-        var data = document.getElementByClassName("appInfo")[0];
-        data.textContent = JSON.stringify()
+    request.setRequestHeader("Content-Type", "application/json");
+    var checker = true;
+    let body = {};
+    let nameBox = document.getElementById("Name").value;
+   // let dateSelected=document.getElementById("Name").value
+    if (nameBox == "") {
+        alert("Please enter your name!")
     }
+    else if (dateSelected == "") {
+        alert("Please select a date!")
+    } else if (timeSelected == "") {
+        alert("Please select a time slot!")
+    } else {
+        body.name = nameBox; 
+        body.appDate = dateSelected;
+        body.timeSlot = timeSelected;
+        body = JSON.stringify(body);
+        request.onreadystatechange = function () {
+            if (request.readyState == 4) {
+                getAppointments();
+               
+            }
+        }
+        request.send(body);
+    }   
+    return false;
 }
+
+
+function deleteApp(ref) {
+    //  alert("hello");
+    let request = new XMLHttpRequest()
+    request.open("DELETE", "http://localhost:9090/appointment")
+    var td = event.target.parentNode;
+    var tr = td.parentNode;
+    tr.parentNode.removeChild(tr);
+}
+function deleteApp2(id) {
+
+    let request = new XMLHttpRequest()
+    request.open("DELETE", "http://localhost:9090/appointment/" + id)
+    request.onreadystatechange = function () {
+        if (request.readyState == 4) {
+            getAppointments();
+        }
+    }
+    request.send();
+
+}
+function amendApp() {
+
+
+}
+
+
+
+
+
+
+// function selectDate(ele) {
+
+//     document.getElementById("date").innerHTML = ele.innerText
+//}
+// 
+// function currentDate() {
+//     var today = new Date();
+//     var dd = String(today.getDate()).padStart(2, '0');
+//     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+//     var yyyy = today.getFullYear();
+
+//     today = mm + '/' + dd + '/' + yyyy;
+
+//     return today;
+// }

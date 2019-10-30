@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -40,7 +41,7 @@
     <br>
     <br>
     <br>
-    <form  class = "data-container" >
+    <form class="data-container" onsubmit="return bookAppointment()">
         <div class="container text-center">
             <input name="Name" id="Name" type="text" placeholder="Enter your name">
             <br>
@@ -50,13 +51,13 @@
                     Select Appointment Date
                 </button>
                 <div id="date-select" class="dropdown-menu">
-                    <button id="myID" class="dropdown-item" onClick=selectDate(this)>dsfsdfsd</button>
-                    <button id="myID2" class="dropdown-item" onClick=selectDate(this)>dsdaasd</button>
-                    <button id="myID3" class="dropdown-item" onClick=selectDate(this)>sdfsdfs</button>
-                    <button id="myID4" class="dropdown-item" onClick=selectDate(this)>sdfddddd</button>
-                    <button id="myID5" class="dropdown-item" onClick=selectDate(this)></button>
-                    <button id="myID6" class="dropdown-item" onClick=selectDate(this)></button>
-                    <button id="myID7" class="dropdown-item" onClick=selectDate(this)></button>
+                      <a class="dropdown-item" href="#!" onClick="selectDateSlot(this)">04/11/2019</a>
+                    <a class="dropdown-item" href="#!" onClick="selectDateSlot(this)">05/11/2019</a>
+                    <a class="dropdown-item" href="#!" onClick="selectDateSlot(this)">06/11/2019</a>
+                    <a class="dropdown-item" href="#!" onClick="selectDateSlot(this)">07/11/2019</a>
+                    <a class="dropdown-item" href="#!" onClick="selectDateSlot(this)">08/11/2019</a>
+                    <a class="dropdown-item" href="#!" onClick="selectDateSlot(this)">11/11/2019</a>
+                    <a class="dropdown-item" href="#!" onClick="selectDateSlot(this)">12/11/2019</a>
 
                 </div>
                 <br>
@@ -67,23 +68,28 @@
                     Select a Time Slot
                 </button>
                 <div class="dropdown-menu">
-                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="1">09:00 - 11:00</button>
-                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="2">11:00 - 13:00</button>
-                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="3">13:00 - 15:00</button>
-                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="4">15:00 - 17:00</button>
+                    <a class="dropdown-item" href="#!" onclick="selectTimeSlot(this)">Select a Time Slot</a>
+                    <a class="dropdown-item" href="#!" onclick="selectTimeSlot(this)">09:00 - 11:00</a>
+                    <a class="dropdown-item" href="#!" onclick="selectTimeSlot(this)">11:00 - 13:00</a>
+                    <a class="dropdown-item" href="#!" onclick="selectTimeSlot(this)">13:00 - 15:00</a>
+                    <a class="dropdown-item" href="#!" onclick="selectTimeSlot(this)">15:00 - 17:00</a>
                 </div>
-
             </div>
             <br>
-            <br>
-            <button type="submit" onsubmit="bookAppointment()">
+            <button type = "submit">
                 Book
             </button>
+            <br>
+            <br>
         </div>
     </form>
-    <button button-centre onclick="getAppointments()">
+
+
+   <center><button onclick="getAppointments()">
         Show Appointments
-    </button>
+    </button></center>
+    <br>
+    <br>
     <div class="container">
         <h2> Booked Appointments</h2>
 
@@ -98,15 +104,15 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-            <tbody id = "appointmentData">
+            <tbody id="appointmentData">
                 <tr>
                     <td>1</td>
-                    <td>Michael</td>
-                    <td>10/29/19</td>
-                    <td>2</td>
-                    <td><button>Edit</button></td>
-                    <td><button>delete</button></td>
-                    
+                    <td>    </td>
+                    <td>04/11/2019</td>
+                    <td>11:00 - 13:00</td>
+                    <td><button onClick="amendApp(this);">Edit</button></td>
+                    <td><button onClick="deleteApp(this);" >Delete</button></td>
+
                 </tr>
 
             </tbody>
@@ -115,4 +121,5 @@
 
     <script src="knifeManScript.js"></script>
 </body>
+
 </html>
