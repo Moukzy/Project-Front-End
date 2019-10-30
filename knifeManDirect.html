@@ -9,71 +9,81 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src= "knifeManScript.js"></script>
 </head>
 
 <body>
 
-    <div class="jumbotron text-center">
+    <div class="jumbotron text-center mb-0">
         <h1>KnifeManDirect</h1>
         <p>For all your Knife Sharping needs</p>
     </div>
 
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark text-center">
-        <a value="Menu" class="navbar-brand" href="#">Navbar</a>
+        <a value="Menu" class="navbar-brand" href="#">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Prices</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
+                    <a class="nav-link" href="#">Contact us</a>
                 </li>
             </ul>
         </div>
     </nav>
-    <form>
+    <br>
+    <br>
+    <br>
+    <form  class = "data-container" >
         <div class="container text-center">
-            <input name="Name" type="text" placeholder="Enter your name">
+            <input name="Name" id="Name" type="text" placeholder="Enter your name">
             <br>
             <br>
             <div class="dropdown">
-                <button type="button" id = "date" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Date
+                <button type="button" id="date" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Select Appointment Date
                 </button>
-                <div class="dropdown-menu">
-                  <button class="dropdown-item" onClick = selectDate(this) value = "2019-10-28">2019-10-28</button>
-                  <button class="dropdown-item" onClick = selectDate(this) value = "2019-10-29">2019-10-29</button>
-                  <button class="dropdown-item" onClick = selectDate(this) value = "2019-10-30">2019-10-30</button>
+                <div id="date-select" class="dropdown-menu">
+                    <button id="myID" class="dropdown-item" onClick=selectDate(this)>dsfsdfsd</button>
+                    <button id="myID2" class="dropdown-item" onClick=selectDate(this)>dsdaasd</button>
+                    <button id="myID3" class="dropdown-item" onClick=selectDate(this)>sdfsdfs</button>
+                    <button id="myID4" class="dropdown-item" onClick=selectDate(this)>sdfddddd</button>
+                    <button id="myID5" class="dropdown-item" onClick=selectDate(this)></button>
+                    <button id="myID6" class="dropdown-item" onClick=selectDate(this)></button>
+                    <button id="myID7" class="dropdown-item" onClick=selectDate(this)></button>
+
                 </div>
                 <br>
                 <br>
             </div>
             <div class="dropdown">
-                <button type="button" id = "time" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Time Slot 
+                <button type="button" id="time" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Select a Time Slot
                 </button>
                 <div class="dropdown-menu">
-                    <button class="dropdown-item" onClick = selectTimeSlot(this) value = "1">1</button>
-                    <button class="dropdown-item" onClick = selectTimeSlot(this) value = "2">2</button>
-                    <button class="dropdown-item" onClick = selectTimeSlot(this) value = "3">3</button>
+                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="1">09:00 - 11:00</button>
+                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="2">11:00 - 13:00</button>
+                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="3">13:00 - 15:00</button>
+                    <button class="dropdown-item" onClick=selectTimeSlot(this) value="4">15:00 - 17:00</button>
                 </div>
 
             </div>
             <br>
             <br>
-            <button type="submit" onclick=" ">
+            <button type="submit" onsubmit="bookAppointment()">
                 Book
             </button>
-            <vaadin-date-picker label="Date" placeholder="Pick a date">
-            </vaadin-date-picker>
+        </div>
     </form>
+    <button button-centre onclick="getAppointments()">
+        Show Appointments
+    </button>
     <div class="container">
         <h2> Booked Appointments</h2>
 
@@ -86,13 +96,23 @@
                     <th>Time-Slot</th>
                     <th>Edit</th>
                     <th>Delete</th>
-
                 </tr>
             </thead>
-            <tbody>
+            <tbody id = "appointmentData">
+                <tr>
+                    <td>1</td>
+                    <td>Michael</td>
+                    <td>10/29/19</td>
+                    <td>2</td>
+                    <td><button>Edit</button></td>
+                    <td><button>delete</button></td>
+                    
+                </tr>
 
             </tbody>
         </table>
     </div>
 
+    <script src="knifeManScript.js"></script>
+</body>
 </html>
