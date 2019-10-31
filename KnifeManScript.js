@@ -63,7 +63,7 @@ function renderInfo(response) {
 
 function getAppointments() {
     let request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:9090/appointment");
+    request.open("GET", "http://"+location.host+":9090/appointment");
 
     request.onload = function () {
         renderInfo(JSON.parse(request.response));
@@ -74,7 +74,7 @@ function getAppointments() {
 }
 function bookAppointment() {
     let request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:9090/appointment");
+    request.open("POST", "http://"+location.host+":9090/appointment");
 
     request.setRequestHeader("Content-Type", "application/json");
     
@@ -101,7 +101,7 @@ function bookAppointment() {
         }
         request.send(body);
     }   
-    
+
     return false;
 }
 
@@ -110,7 +110,7 @@ function bookAppointment() {
 function deleteApp2(id) {
 
     let request = new XMLHttpRequest()
-    request.open("DELETE", "http://localhost:9090/appointment/" + id)
+    request.open("DELETE", "http://"+location.host+":9090/appointment" + id)
     request.onreadystatechange = function () {
         if (request.readyState == 4) {
             getAppointments();
@@ -146,7 +146,7 @@ function amendApp(id,name,date1,slot1,tdname,tddate,tdslot) {
    btn.innerText="Update";
    btn.onclick=function(){
             let request = new XMLHttpRequest()
-            request.open("PUT","http://localhost:9090/appointment")
+            request.open("PUT","http://"+location.host+":9090/appointment")
             request.setRequestHeader("Content-Type", "application/json");
             let body = {
             "id":id,
