@@ -101,6 +101,7 @@ function bookAppointment() {
         }
         request.send(body);
     }   
+    
     return false;
 }
 
