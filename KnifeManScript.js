@@ -101,7 +101,7 @@ function bookAppointment() {
         }
         request.send(body);
     }   
-
+    
     return false;
 }
 
@@ -110,7 +110,7 @@ function bookAppointment() {
 function deleteApp2(id) {
 
     let request = new XMLHttpRequest()
-    request.open("DELETE", "http://"+location.host+":9090/appointment" + id)
+    request.open("DELETE", "http://"+location.host+":9090/appointment/" + id)
     request.onreadystatechange = function () {
         if (request.readyState == 4) {
             getAppointments();
