@@ -23,6 +23,7 @@ function renderInfo(response) {
     tbody.innerHTML = "";
     for (let appointment of response) {
         let row = document.createElement("tr");
+        row.id="row"+appointment.id;
         let appointmentNum = document.createElement("td");
         appointmentNum.innerText = appointment.id;
         let name = document.createElement("td");
@@ -34,10 +35,15 @@ function renderInfo(response) {
         let editCell = document.createElement("td");
         let editButton = document.createElement("button");
         editButton.innerText = "Edit";
+        editButton.id="Edit"+appointment.id;
+        
         editCell.appendChild(editButton)
         let deleteCell = document.createElement("td");
         let deleteButton = document.createElement("button");
-        deleteButton.innerText = "Delete1"
+        deleteButton.innerText = "Delete"
+        editButton.onclick = function(){
+            amendApp(appointment.id,appointment.name,appointment.appDate,appointment.timeSlot,name,date,slot);
+        }
         deleteButton.onclick = function () {
             deleteApp2(appointment.id);
         }
@@ -48,6 +54,8 @@ function renderInfo(response) {
         row.appendChild(slot);
         row.appendChild(editCell);
         row.appendChild(deleteCell);
+
+ 
         tbody.appendChild(row);
     }
     console.log(response)
@@ -69,7 +77,7 @@ function bookAppointment() {
     request.open("POST", "http://localhost:9090/appointment");
 
     request.setRequestHeader("Content-Type", "application/json");
-    var checker = true;
+    
     let body = {};
     let nameBox = document.getElementById("Name").value;
    // let dateSelected=document.getElementById("Name").value
@@ -97,14 +105,7 @@ function bookAppointment() {
 }
 
 
-function deleteApp(ref) {
-    //  alert("hello");
-    let request = new XMLHttpRequest()
-    request.open("DELETE", "http://localhost:9090/appointment")
-    var td = event.target.parentNode;
-    var tr = td.parentNode;
-    tr.parentNode.removeChild(tr);
-}
+
 function deleteApp2(id) {
 
     let request = new XMLHttpRequest()
@@ -117,8 +118,53 @@ function deleteApp2(id) {
     request.send();
 
 }
-function amendApp() {
+function amendApp(id,name,date1,slot1,tdname,tddate,tdslot) {
+   let newrow=document.getElementById("row"+id);
+   let nameElement = document.createElement("input");
+   let dateElement = document.createElement("input");
+   let slotElement = document.createElement("input");
+   
+   nameElement.value=name;
+   dateElement.value=date1;
+   slotElement.value=slot1;
+   let e1=tdname.firstChild;
+   let e2=tddate.firstChild;
+   let e3=tdslot.firstChild;
+   
+   
+   tdname.removeChild(e1);
+   tddate.removeChild(e2);
+   tdslot.removeChild(e3);
+ 
+   
+   tdname.appendChild(nameElement);
+   tddate.appendChild(dateElement);
+   tdslot.appendChild(slotElement);
+  
+   var btn=document.getElementById("Edit"+id);
+   btn.innerText="Update";
+   btn.onclick=function(){
+            let request = new XMLHttpRequest()
+            request.open("PUT","http://localhost:9090/appointment")
+            request.setRequestHeader("Content-Type", "application/json");
+            let body = {
+            "id":id,
+                "name": nameElement.value,
+                "appDate":dateElement.value,
+                "timeSlot":slotElement.value
+            };
+            //alert(body);
+            request.onreadystatechange = function (){
+                if (request.readyState == 4) {
+                   // alert(request.responseText);
+                    getAppointments();
+                }        
+        }
 
+            body = JSON.stringify(body);
+        // alert(body);    
+            request.send(body);
+}
 
 }
 
