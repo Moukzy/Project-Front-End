@@ -47,8 +47,8 @@
             <br>
             <br>
             <div class="dropdown">
-                <button type="button" id="date" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                    Select Appointment Date
+                <button type="button" id="date"class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                    Select a Date
                 </button>
                 <div id="date-select" class="dropdown-menu">
                     <a class="dropdown-item" id ="d1" href="#!" onClick="selectDateSlot(this)">04/11/2019</a>
@@ -64,7 +64,7 @@
                 <br>
             </div>
             <div class="dropdown">
-                <button type="button" id="time" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                <button type="button" id="time"  class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                     Select a Time Slot
                 </button>
                 <div class="dropdown-menu">
@@ -75,7 +75,7 @@
                 </div>
             </div>
             <br>
-            <button id= "submit" type = "submit">
+            <button id= "submit" type = "submit" afterclick= "document.getElementById('Name').value = '' ">
                 Book
             </button>
             <br>
@@ -84,7 +84,7 @@
     </form>
 
 
-   <center><button id="showAppointments" onclick="getAppointments()">
+   <center><button id="showAppointments"  onclick="getAppointments()">
         Show Appointments
     </button></center>
     <br>
@@ -95,7 +95,7 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Appointment</th>
+                    <th>Appointment_ID</th>
                     <th>Name</th>
                     <th>Date</th>
                     <th>Time-Slot</th>
